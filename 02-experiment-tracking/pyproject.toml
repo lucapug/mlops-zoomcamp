@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "exp-tracking"
+version = "0.1.0"
+description = ""
+authors = ["lucapug"]
+readme = "README.md"
+packages = [{include = "exp_tracking"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+scikit-learn = "1.1.0"
+pandas = "^2.0.0"
+jupyter = "^1.0.0"
+seaborn = "^0.12.2"
+fastparquet = "^2023.2.0"
+boto3 = "^1.26.114"
+xgboost = "^1.7.5"
+hyperopt = "^0.2.7"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
