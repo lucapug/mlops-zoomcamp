@@ -17,6 +17,7 @@ boto3 = "^1.26.114"
 xgboost = "^1.7.5"
 hyperopt = "^0.2.7"
 psycopg2-binary = "^2.9.6"
+awscli = "^1.27.129"
 
 
 [build-system]
