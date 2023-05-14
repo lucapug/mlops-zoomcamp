@@ -10,7 +10,7 @@
   <a href="https://airtable.com/shrCb8y6eTbPKwSTL"><img src="https://user-images.githubusercontent.com/875246/185755203-17945fd1-6b64-46f2-8377-1011dcb1a444.png" height="50" /></a>
 </p>
 
-Our MLOps Zoomcamp course
+Our MLOps Zoomcamp course:
 
 - Sign up here: https://airtable.com/shrCb8y6eTbPKwSTL
 - Register in [DataTalks.Club's Slack](https://datatalks.club/slack.html)
