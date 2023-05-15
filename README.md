@@ -28,6 +28,7 @@ Our MLOps Zoomcamp course:
 * **Start**: 15 May 2023 (Monday) at 17:00 CET
 * **Registration link**: https://airtable.com/shrCb8y6eTbPKwSTL
 * Subscribe to our [public Google Calendar](https://calendar.google.com/calendar/?cid=M3Jzbmg0ZDA2aHVsY2M1ZjcyNDJtODNyMTRAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ) (it works from Desktop only)
+* [Cohort folder](cohorts/2023)
 
 ### Self-paced mode
 
@@ -38,12 +39,6 @@ can take the course at your own pace
 * You don't need to fill in the registration form. Just start watching the videos and join Slack
 * Check [FAQ](https://docs.google.com/document/d/12TlBfhIiKtyBv8RnsoJR6F72bkPDGEvPOItJIxaEzE0/edit) if you have problems
 * If you can't find a solution to your problem in FAQ, ask for help in Slack
-
-### 2022 Cohort
-
-- [Leaderboard](https://docs.google.com/spreadsheets/d/e/2PACX-1vRhinTR4Gpxcud-xX0cPBVqboO8RE5gFY7W2dfgfhzECuPFOaCoo9TVWUTxxrSmzvbZY0D-N1vai8RN/pubhtml)
-
-
 
 ## Overview
 
