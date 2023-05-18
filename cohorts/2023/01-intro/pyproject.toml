@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "01-intro"
+version = "0.1.0"
+description = ""
+authors = ["lucapug <lucapug@gmail.com>"]
+readme = "README.md"
+packages = [{include = "01_intro"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
