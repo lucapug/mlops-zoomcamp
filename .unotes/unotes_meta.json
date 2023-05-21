@@ -79,6 +79,14 @@
                   "isOrdered": true,
                   "folders": {},
                   "files": {}
+                },
+                "docs": {
+                  "name": "docs",
+                  "isOrdered": true,
+                  "folders": {},
+                  "files": {
+                    "MLOps zoomcamp notes w1": 0
+                  }
                 }
               },
               "files": {
