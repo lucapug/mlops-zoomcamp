@@ -1,4 +1,4 @@
-# MLOps Zoomcamp Notes W1
+# MLOps Zoomcamp Notes Week1
 
 Sun, May 21, 2023 3:39 PM
 
@@ -17,4 +17,4 @@ My personal setup is depicted in the figure below. I have duplicated the dev env
 
 ![schema dev environment](.media/img_0.png)
 
-To have all development jobs in sync between local and cloud dev environments, I have created a centralized Github repo that is a fork of the DataTalkClub course repo. This fork allows me to update my fork from the source repo without pushing back my personal course activities.
+To have all development jobs in sync between local and cloud dev environments, I have created a centralized Github repo that is a fork of the DataTalkClub course repo. This allows me to update my fork from the source repo without pushing back my personal course activities.
