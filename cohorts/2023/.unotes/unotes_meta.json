@@ -1,0 +1,50 @@
+{
+  "name": "",
+  "isOrdered": true,
+  "folders": {
+    "01-intro": {
+      "name": "01-intro",
+      "isOrdered": true,
+      "folders": {
+        "data": {
+          "name": "data",
+          "isOrdered": true,
+          "folders": {},
+          "files": {}
+        },
+        "models": {
+          "name": "models",
+          "isOrdered": true,
+          "folders": {},
+          "files": {}
+        },
+        "notebooks": {
+          "name": "notebooks",
+          "isOrdered": true,
+          "folders": {},
+          "files": {}
+        },
+        "docs": {
+          "name": "docs",
+          "isOrdered": true,
+          "folders": {},
+          "files": {
+            "MLOps zoomcamp notes w1": 0
+          }
+        }
+      },
+      "files": {
+        "homework": 0
+      }
+    },
+    "02-experiment-tracking": {
+      "name": "02-experiment-tracking",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    }
+  },
+  "files": {
+    "README": 0
+  }
+}

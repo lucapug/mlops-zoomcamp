@@ -1,0 +1,121 @@
+{
+  "name": "",
+  "isOrdered": true,
+  "folders": {
+    "01-intro": {
+      "name": "01-intro",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    },
+    "02-experiment-tracking": {
+      "name": "02-experiment-tracking",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    },
+    "03-orchestration": {
+      "name": "03-orchestration",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    },
+    "04-deployment": {
+      "name": "04-deployment",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    },
+    "05-monitoring": {
+      "name": "05-monitoring",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    },
+    "06-best-practices": {
+      "name": "06-best-practices",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    },
+    "07-project": {
+      "name": "07-project",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    },
+    "cohorts": {
+      "name": "cohorts",
+      "isOrdered": true,
+      "folders": {
+        "2022": {
+          "name": "2022",
+          "isOrdered": true,
+          "folders": {},
+          "files": {}
+        },
+        "2023": {
+          "name": "2023",
+          "isOrdered": true,
+          "folders": {
+            "01-intro": {
+              "name": "01-intro",
+              "isOrdered": true,
+              "folders": {
+                "data": {
+                  "name": "data",
+                  "isOrdered": true,
+                  "folders": {},
+                  "files": {}
+                },
+                "models": {
+                  "name": "models",
+                  "isOrdered": true,
+                  "folders": {},
+                  "files": {}
+                },
+                "notebooks": {
+                  "name": "notebooks",
+                  "isOrdered": true,
+                  "folders": {},
+                  "files": {}
+                }
+              },
+              "files": {
+                "homework": 0
+              }
+            },
+            "02-experiment-tracking": {
+              "name": "02-experiment-tracking",
+              "isOrdered": true,
+              "folders": {},
+              "files": {}
+            }
+          },
+          "files": {
+            "README": 0
+          }
+        }
+      },
+      "files": {}
+    },
+    "generate": {
+      "name": "generate",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    },
+    "images": {
+      "name": "images",
+      "isOrdered": true,
+      "folders": {},
+      "files": {}
+    }
+  },
+  "files": {
+    "after-sign-up": 0,
+    "README": 1,
+    "asking-questions": 2,
+    "certificate": 3
+  }
+}
