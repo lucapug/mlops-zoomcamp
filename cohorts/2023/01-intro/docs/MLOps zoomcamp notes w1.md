@@ -4,12 +4,12 @@ Sun, May 21, 2023 3:39 PM
 
 ## Setup of the development environment for the course
 
-In a video of this week, Alexey shows how to setup a rented VM in AWS with these characteristics: 
+In a video of this week, Alexey shows how to setup a rented VM in AWS with these characteristics:
 
-* Ubuntu 22.04, 
-* 16GB of RAM, 
-* instance type t3.xlarge (4 vCPU), 
-* 30GB of EBS storage. 
+* Ubuntu 22.04,
+* 16GB of RAM,
+* instance type t3.xlarge (4 vCPU),
+* 30GB of EBS storage.
 
 The instance type is outside of the free tier resources; an approximate estimate for a workload of `10hrs/week` is `10-20$/month`.
 
@@ -17,22 +17,19 @@ My personal setup is depicted in the figure below. I have duplicated the dev env
 
 ![schema dev environment](.media/img_0.png)
 
-To have all development jobs in sync between local and cloud dev environments, I have created a centralized Github repo that is a fork of the DataTalkClub course repo. This allows me to update my fork from the source repo without pushing back my personal course activities.
+I have created a centralized Github repo that is a fork of the DataTalkClub course repo. This allows me to sync my fork from the DTC source repo without pushing back my personal course work. To have all development jobs in sync between local and cloud dev environments, I regularly do pulls from my Github repo to local and cloud dev.
 
 ## Software installations
 
 ### Initial installations useful throughout the rest of the course
 
-
 | cloud dev env | local dev env |
 | ------------- | ------------- |
 | Anaconda-latest | Miniconda |
 | Docker.io | connecting Docker Desktop to WSL |
-| Docker compose  | included in Docker Desktop |
-
+| Docker compose | included in Docker Desktop |
 
 ### Installations (in a virtual environment for the week)
-
 
 Poetry virtual environment with conda Python 3.9.16 interpreter and the following dependencies (`pyproject.toml`) in the local env:
 
