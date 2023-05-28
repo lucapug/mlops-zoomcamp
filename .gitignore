@@ -1,3 +1,9 @@
+# Mlflow
+mlruns/
+mlartifacts/
+outputs/
+mlruns.db
+
 data/
 .ipynb_checkpoints
 .bin
