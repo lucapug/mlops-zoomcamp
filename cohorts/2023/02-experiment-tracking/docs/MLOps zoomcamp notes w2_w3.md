@@ -20,3 +20,21 @@ Runs conducted in `duration-predictio.ipynb` (revised by Cristian)
 ### Activities conducted in the model registry (`model-registry.ipynb notebook)`
 
 * after deletion of all previous runs from `nyc-taxi-experiment` (from the UI), execept best\_params xgboost and the 4 sklearn estimators, use of MLflow client to **manage models** (register a model, save versions, **promoting** the different model versions to <strong>staging, production, archived stages</strong>). The promotion is simply adding a tag. To effectivly send to deployment a model, some CI/CD logic must be added, with deployment triggered by the tagging operation. It is a task of the ML engineer: analyze and test the tagged models provisioned by the Data Scientist, in order to decide which one to productionize.
+
+## week 3 - Notes on Webinar and on the side by side hw2 execution with wandb and mlflow
+
+### webinar
+
+<strong>intro to use of tables to better make analysis of tabular data in the dashboard. Any kind of media easily logged (also inside table if you want). Very easy to create html rich reports (with interactive show of the wandb charts and plots): semms very similar to a Notion page. Among the integrations, if some Tensorboar visualization can't be reproduced, there is the possibility to host tensorboard logs directly inside wandb project (1 line of code needed,</strong> `wandb.init(project='my-project', sync_tensorboard=True)`<strong>). Wandb is very well suited for Deep learning projects. With the Prompt service can even track LLMs tuning with prompts..</strong>
+
+### side by side execution of homework 2
+
+* **q1** install library in local and say version
+* **q2** preprocess data, save dictvetorizer, and say saved file dimension
+* **q3** train data with RandomForestRegressor, and say max\_depth value
+* **q4** hyperparameters tuning against val\_data, and say best val\_RMSE (mlflow) or analyze features\_importance (wandb) to decide best\_params model
+* **q5** (mlflow) select top 5 runs that minimize val\_rmse, execute them on test\_data, promote the best one (min test\_rmse) to model registry, (wandb) link best\_params model to model registry
+
+**notes on the homework:** slightly different homework tasks, and apparently in wandb\_hw no use of test\_data to select the model to promote to model registry..hyperparameter optimization in local with hyperopt or optuna in mlflow, server side in wandb with sweep that makes use of a particular Bayesian Optimization algorithm named BOHB
+
+<strong>peculiarities (</strong>these are my **first notes and impressions** as a <strong>fresh learner</strong>!<strong>):</strong> better data tracking in wandb. wandb lacks of the local UI that is present in mlflow, but it's possible to work offline and sync later to dashboard, or even pause tracking to modify local code. nice DAG lineage for artifacts in wandb. In mlflow useful autolog(), not present in wandb, to log a bunch of parameters without manual coding. Richer documentation in wandb and curated free courses. Both are considering LLMs tracking, but in wandb there are greater advancements!
