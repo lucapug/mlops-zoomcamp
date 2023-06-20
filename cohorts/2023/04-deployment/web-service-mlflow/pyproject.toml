@@ -16,6 +16,8 @@ boto3 = "^1.26.156"
 
 [tool.poetry.group.dev.dependencies]
 requests = "^2.31.0"
+jupyter = "^1.0.0"
+ipykernel = "^6.23.2"
 
 [build-system]
 requires = ["poetry-core"]
