@@ -2,6 +2,6 @@ The Prefect Project functionality need the execution of `prefect init` at the ro
 
 So to simplify things (as in this course each module is like an autonomous 'project'), the solution has been to develop this module code in a separate github repo at:
 
-[prefect-mlops-zoomcamp](https://github.com/lucapug/prefect-mlops-zoomcamphttps:/)
+[prefect-mlops-zoomcamp](https://github.com/lucapug/prefect-mlops-zoomcamp)
 
 So, to give a look to the code, jump to the link above!
