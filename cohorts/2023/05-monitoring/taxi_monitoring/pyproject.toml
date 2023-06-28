@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "taxi-monitoring"
+version = "0.1.0"
+description = ""
+authors = ["lucapug <lucapug@gmail.com>"]
+readme = "README.md"
+packages = [{include = "taxi_monitoring"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
