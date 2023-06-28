@@ -1,11 +1,12 @@
 version: '3.7'
 
-volumes: 
+volumes:
   grafana_data: {}
 
 networks:
   front-tier:
   back-tier:
+
 
 services:
   db:
@@ -25,7 +26,7 @@ services:
       - "8080:8080"
     networks:
       - back-tier
-      - front-tier  
+      - front-tier
 
   grafana:
     image: grafana/grafana
@@ -34,8 +35,6 @@ services:
       - "3000:3000"
     volumes:
       - ./config/grafana_datasources.yaml:/etc/grafana/provisioning/datasources/datasource.yaml:ro
-      - ./config/grafana_dashboards.yaml:/etc/grafana/provisioning/dashboards/dashboards.yaml:ro
-      - ./dashboards:/opt/grafana/dashboards
     networks:
       - back-tier
       - front-tier
