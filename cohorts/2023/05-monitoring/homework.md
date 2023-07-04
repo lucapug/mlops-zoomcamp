@@ -10,8 +10,8 @@ Start with `baseline_model_nyc_taxi_data.ipynb`. Download the March 2023 Green T
 
 What is the shape of the downloaded data? How many rows are there?
 
-* 85371
-* 78537
+* 72044
+* 78537 
 * 62495
 * 54396
 
@@ -68,13 +68,13 @@ Where to place a dashboard config file?
 
 ## Submit the results
 
-* Submit your results here: TBA
+* Submit your results here: https://forms.gle/PJaYeWsnWShAEBF79
 * You can submit your solution multiple times. In this case, only the last submission will be used
 * If your answer doesn't match options exactly, select the closest one
 
 
 ## Deadline
 
-The deadline for submitting is 3 July (Monday), 23:00 CEST (Berlin time). 
+The deadline for submitting is 7 July (Friday), 23:00 CEST (Berlin time). 
 
 After that, the form will be closed.
