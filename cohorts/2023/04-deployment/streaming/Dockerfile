@@ -1,11 +1,13 @@
 FROM public.ecr.aws/lambda/python:3.9
 
 RUN pip install -U pip
-RUN pip install pipenv 
+RUN pip install poetry
 
-COPY [ "Pipfile", "Pipfile.lock", "./" ]
+COPY ["pyproject.toml", "./"]
 
-RUN pipenv install --system --deploy
+RUN poetry export --without-hashes -f requirements.txt --output requirements.txt
+
+RUN pip install -r requirements.txt
 
 COPY [ "lambda_function.py", "./" ]
 
