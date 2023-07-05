@@ -24,7 +24,8 @@ def prepare_features(ride):
     return features
 
 def predict(features):
-    return model.predict(features)
+    pred = model.predict(features)
+    return float(pred[0])
 
 def lambda_handler(event, context):
     # print(json.dumps(event))
