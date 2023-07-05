@@ -7,6 +7,15 @@ kinesis_client = boto3.client('kinesis')
 
 PREDICTIONS_STREAM_NAME = os.getenv('PREDICTIONS_STREAM_NAME', 'ride_predictions')
 
+import mlflow
+from flask import Flask, request, jsonify
+
+RUN_ID = os.getenv('RUN_ID')
+
+logged_model = f's3://lucap-mlflow-artifacts-remote/1/{RUN_ID}/artifacts/model'
+# logged_model = f'runs:/{RUN_ID}/model'
+model = mlflow.pyfunc.load_model(logged_model)
+
 def prepare_features(ride):
     features = {}
     features['PU_DO'] = '%s_%s' % (ride['PULocationID'], ride['DOLocationID'])
