@@ -3,18 +3,19 @@ import json
 import boto3
 import base64
 
+import mlflow
+
 kinesis_client = boto3.client('kinesis')
 
 PREDICTIONS_STREAM_NAME = os.getenv('PREDICTIONS_STREAM_NAME', 'ride_predictions')
-
-import mlflow
-from flask import Flask, request, jsonify
 
 RUN_ID = os.getenv('RUN_ID')
 
 logged_model = f's3://lucap-mlflow-artifacts-remote/1/{RUN_ID}/artifacts/model'
 # logged_model = f'runs:/{RUN_ID}/model'
 model = mlflow.pyfunc.load_model(logged_model)
+
+TEST_RUN = os.getenv('TEST_RUN', 'False') == 'True'
 
 def prepare_features(ride):
     features = {}
@@ -23,7 +24,7 @@ def prepare_features(ride):
     return features
 
 def predict(features):
-    return 10.0
+    return model.predict(features)
 
 def lambda_handler(event, context):
     # print(json.dumps(event))
@@ -50,11 +51,11 @@ def lambda_handler(event, context):
             }
         }
         
-        kinesis_client.put_record(
-                StreamName=PREDICTIONS_STREAM_NAME,
-                Data=json.dumps(prediction_event),
-                PartitionKey=str(ride_id)
-            )        
+        # kinesis_client.put_record(
+        #         StreamName=PREDICTIONS_STREAM_NAME,
+        #         Data=json.dumps(prediction_event),
+        #         PartitionKey=str(ride_id)
+        #     )        
         
         predictions_events.append(prediction_event)
 
