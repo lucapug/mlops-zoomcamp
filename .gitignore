@@ -47,3 +47,4 @@ artifacts
 examples/jax/jax-llm/proteins-base/
 
 *.code-workspace
+.venv_old
