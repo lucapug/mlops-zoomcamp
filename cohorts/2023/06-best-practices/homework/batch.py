@@ -2,13 +2,12 @@
 # coding: utf-8
 
 import sys
-import os
 import pickle
 import pandas as pd
 
 
-year = int(sys.argv[1]) # 2022
-month = int(sys.argv[2]) # 2
+year = int(sys.argv[1])
+month = int(sys.argv[2])
 
 input_file = f'https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_{year:04d}-{month:02d}.parquet'
 output_file = f'output/yellow_tripdata_{year:04d}-{month:02d}.parquet'
@@ -50,10 +49,4 @@ df_result['ride_id'] = df['ride_id']
 df_result['predicted_duration'] = y_pred
 
 
-os.makedirs('output', exist_ok=True)
-df_result.to_parquet(
-    output_file,
-    engine='pyarrow',
-    compression=None,
-    index=False
-)
+df_result.to_parquet(output_file, engine='pyarrow', index=False)
