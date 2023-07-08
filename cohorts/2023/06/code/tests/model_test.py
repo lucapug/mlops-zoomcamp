@@ -33,3 +33,28 @@ def test_prepare_features():
     }
     
     assert actual_features == expected_features
+    
+class ModelMock():
+    def __init__(self, value) -> None:
+        self.value = value
+    
+    def predict(self, X):
+        n = len(X)
+        return [self.value]*10
+
+
+def test_predict():
+
+    model_mock = ModelMock(10.0)
+    model_service = model.ModelService(model_mock)
+    
+    features = {
+        "PU_DO": "130_205",
+        "trip_distance": 3.66
+    }
+    
+    actual_preds = model_service.predict(features)
+    expected_preds = 10.0
+
+    
+    assert actual_preds == expected_preds
