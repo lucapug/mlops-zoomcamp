@@ -21,7 +21,7 @@ def base64_decode(encoded_data):
     
 class ModelService():
     
-    def __init__(self, model, model_version):
+    def __init__(self, model, model_version = None):
         self.model = model
         self. model_version = model_version
     
