@@ -13,6 +13,11 @@ def load_model(run_id):
     # logged_model = f'runs:/{RUN_ID}/model'
     model = mlflow.pyfunc.load_model(logged_model)
     return model
+
+def base64_decode(encoded_data):
+    decoded_data = base64.b64decode(encoded_data).decode('utf-8')
+    ride_event = json.loads(decoded_data)
+    return ride_event 
     
 class ModelService():
     
@@ -38,8 +43,7 @@ class ModelService():
         
         for record in event['Records']:
             encoded_data = record['kinesis']['data']
-            decoded_data = base64.b64decode(encoded_data).decode('utf-8')
-            ride_event = json.loads(decoded_data)
+            ride_event = base64_decode(encoded_data)
 
             # print(ride_event)
             ride = ride_event['ride']
