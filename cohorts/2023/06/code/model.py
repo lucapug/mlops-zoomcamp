@@ -5,9 +5,6 @@ import base64
 
 import mlflow
 
-#kinesis_client = boto3.client('kinesis')
-
-
 def load_model(run_id):
     logged_model = f's3://lucap-mlflow-artifacts-remote/1/{run_id}/artifacts/model'
     # logged_model = f'runs:/{RUN_ID}/model'
@@ -21,9 +18,10 @@ def base64_decode(encoded_data):
     
 class ModelService():
     
-    def __init__(self, model, model_version = None):
+    def __init__(self, model, model_version = None, callbacks=None):
         self.model = model
         self. model_version = model_version
+        self.callbacks = callbacks or []
     
     def prepare_features(self, ride):
         features = {}
@@ -62,22 +60,45 @@ class ModelService():
                 }
             }
 
-            # if not TEST_RUN:
-            #     kinesis_client.put_record(
-            #         StreamName=PREDICTIONS_STREAM_NAME,
-            #         Data=json.dumps(prediction_event),
-            #         PartitionKey=str(ride_id)
-            #     )
+
+            for callback in self.callbacks:
+                callback(prediction_event)
             
             predictions_events.append(prediction_event)
-
 
         return {
             'predictions': predictions_events
         }        
 
+class KinesisCallback:
+    def __init__(self, kinesis_client, prediction_stream_name):
+        self.kinesis_client = kinesis_client
+        self.prediction_stream_name = prediction_stream_name
+
+    def put_record(self, prediction_event):
+        ride_id = prediction_event['prediction']['ride_id']
+
+        self.kinesis_client.put_record(
+            StreamName=self.prediction_stream_name,
+            Data=json.dumps(prediction_event),
+            PartitionKey=str(ride_id),
+        )
+
+
 def init(prediction_stream_name: str, run_id: str, test_run: bool):
-    model = load_model(run_id)    
+    model = load_model(run_id) 
+    
+    callbacks = []
+    
+    if not test_run:
+        kinesis_client = boto3.client('kinesis')
+        kinesis_callback = KinesisCallback(
+            kinesis_client,
+            prediction_stream_name
+        )
+        callbacks.append(kinesis_callback.put_record)
+        
+                      
     model_service = ModelService(model)
 
     return model_service
