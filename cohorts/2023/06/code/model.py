@@ -5,10 +5,22 @@ import base64
 
 import mlflow
 
+def get_model_location(run_id):
+    model_location = os.getenv('MODEL_LOCATION')
+
+    if model_location is not None:
+        return model_location
+
+    model_bucket = os.getenv('MODEL_BUCKET', 'lucap-mlflow-artifacts-remote')
+    experiment_id = os.getenv('MLFLOW_EXPERIMENT_ID', '1')
+
+    model_location = f's3://{model_bucket}/{experiment_id}/{run_id}/artifacts/model'
+    return model_location
+
+
 def load_model(run_id):
-    logged_model = f's3://lucap-mlflow-artifacts-remote/1/{run_id}/artifacts/model'
-    # logged_model = f'runs:/{RUN_ID}/model'
-    model = mlflow.pyfunc.load_model(logged_model)
+    model_path = get_model_location(run_id)
+    model = mlflow.pyfunc.load_model(model_path)
     return model
 
 def base64_decode(encoded_data):
