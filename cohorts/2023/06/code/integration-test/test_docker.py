@@ -35,7 +35,7 @@ print(json.dumps(actual_response, indent=2))
 expected_response = {
     "predictions": [{
         'model': 'ride_duration_prediction_model',
-        'version': 'd038fcff0d5742c58177cf499a456b25',
+        'version': 'Test123',
         'prediction': {
             'ride_duration': 18.2,
             'ride_id': 156   
