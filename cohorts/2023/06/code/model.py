@@ -65,13 +65,9 @@ class ModelService():
         
             prediction_event = {
                 'model': 'ride_duration_prediction_model',
-                'version': self. model_version,
-                'prediction': {
-                    'ride_duration': prediction,
-                    'ride_id': ride_id   
-                }
+                'version': self.model_version,
+                'prediction': {'ride_duration': prediction, 'ride_id': ride_id},
             }
-
 
             for callback in self.callbacks:
                 callback(prediction_event)
@@ -96,6 +92,14 @@ class KinesisCallback:
             PartitionKey=str(ride_id),
         )
 
+def create_kinesis_client():
+    endpoint_url = os.getenv('KINESIS_ENDPOINT_URL')
+    
+    if endpoint_url is None:
+        return boto3.client('kinesis')
+    
+    return boto3.client('kinesis', endpoint_url=endpoint_url)
+        
 
 def init(prediction_stream_name: str, run_id: str, test_run: bool):
     model = load_model(run_id) 
@@ -103,7 +107,7 @@ def init(prediction_stream_name: str, run_id: str, test_run: bool):
     callbacks = []
     
     if not test_run:
-        kinesis_client = boto3.client('kinesis')
+        kinesis_client = create_kinesis_client()
         kinesis_callback = KinesisCallback(
             kinesis_client,
             prediction_stream_name

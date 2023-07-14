@@ -33,17 +33,17 @@ print('actual response:')
 print(json.dumps(actual_response, indent=2))
 
 expected_response = {
-    "predictions": [{
-        'model': 'ride_duration_prediction_model',
-        'version': 'Test123',
-        'prediction': {
-            'ride_duration': 18.2,
-            'ride_id': 156   
+    "predictions": [
+        {
+            'model': 'ride_duration_prediction_model',
+            'version': 'Test123',
+            'prediction': {
+                'ride_duration': 18.2,
+                'ride_id': 156   
+            },
         }
-    }]
+    ]
 }
-
-
 
 
 diff = DeepDiff(actual_response, expected_response, significant_digits=1)
