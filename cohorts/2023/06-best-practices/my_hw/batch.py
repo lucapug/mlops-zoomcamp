@@ -5,9 +5,12 @@ import sys
 import pickle
 import pandas as pd
 
-def read_data(filename, categorical):
+def read_data(filename):
     df = pd.read_parquet(filename)
     
+    return df
+
+def prepare_data(df, categorical):
     df['duration'] = df.tpep_dropoff_datetime - df.tpep_pickup_datetime
     df['duration'] = df.duration.dt.total_seconds() / 60
 
@@ -15,9 +18,7 @@ def read_data(filename, categorical):
 
     df[categorical] = df[categorical].fillna(-1).astype('int').astype('str')
     
-    return df
-
-
+    return df    
 
 def main(year = int(sys.argv[1]), month = int(sys.argv[2])):
     
@@ -30,7 +31,9 @@ def main(year = int(sys.argv[1]), month = int(sys.argv[2])):
     with open('model.bin', 'rb') as f_in:
         dv, lr = pickle.load(f_in)
     
-    df = read_data(input_file, categorical)
+    df_raw = read_data(input_file)
+    df = prepare_data(df_raw, categorical)
+    
     df['ride_id'] = f'{year:04d}/{month:02d}_' + df.index.astype('str')
 
 
