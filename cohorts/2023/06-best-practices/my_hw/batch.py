@@ -20,7 +20,7 @@ def prepare_data(df, categorical):
     
     return df    
 
-def main(year = int(sys.argv[1]), month = int(sys.argv[2])):
+def main(year, month):
     
     categorical = ['PULocationID', 'DOLocationID']
     
@@ -52,5 +52,11 @@ def main(year = int(sys.argv[1]), month = int(sys.argv[2])):
 
     df_result.to_parquet(output_file, engine='pyarrow', index=False)
 
+#if __name__ == "__main__":
+#    main()
+
 if __name__ == "__main__":
-    main()
+    year = int(sys.argv[1])
+    month = int(sys.argv[2])
+    # print(year)
+    main(year=year, month=month)
