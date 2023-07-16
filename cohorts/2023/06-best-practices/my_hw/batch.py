@@ -25,8 +25,8 @@ def main(year, month):
     categorical = ['PULocationID', 'DOLocationID']
     
     input_file = f'https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_{year:04d}-{month:02d}.parquet'
-    output_file = f'output/yellow_tripdata_{year:04d}-{month:02d}.parquet'
-    #output_file = f'taxi_type=yellow_year={year:04d}_month={month:02d}.parquet'
+    #output_file = f'output/yellow_tripdata_{year:04d}-{month:02d}.parquet'
+    output_file = f'taxi_type=yellow_year={year:04d}_month={month:02d}.parquet'
     
     with open('model.bin', 'rb') as f_in:
         dv, lr = pickle.load(f_in)
