@@ -1,12 +1,35 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+import os
 import sys
 import pickle
 import pandas as pd
 
+
+def get_input_path(year, month):
+    default_input_pattern = 'https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_{year:04d}-{month:02d}.parquet'
+    input_pattern = os.getenv('INPUT_FILE_PATTERN', default_input_pattern)
+    return input_pattern.format(year=year, month=month)
+
+
+def get_output_path(year, month):
+    default_output_pattern = 's3://nyc-duration-prediction-lucap/taxi_type=hw6/year={year:04d}/month={month:02d}/predictions.parquet'
+    output_pattern = os.getenv('OUTPUT_FILE_PATTERN', default_output_pattern)
+    return output_pattern.format(year=year, month=month)
+
 def read_data(filename):
-    df = pd.read_parquet(filename)
+    if os.getenv('S3_ENDPOINT_URL') is None:
+        df = pd.read_parquet(filename)
+    else:
+        endpoint_url=os.getenv('S3_ENDPOINT_URL')
+        options = {
+            'client_kwargs': {
+                'endpoint_url': endpoint_url
+            }
+        }
+
+        df = pd.read_parquet('s3://bucket/file.parquet', storage_options=options)        
     
     return df
 
@@ -21,12 +44,10 @@ def prepare_data(df, categorical):
     return df    
 
 def main(year, month):
+    input_file = get_input_path(year, month)
+    output_file = get_output_path(year, month)    
     
     categorical = ['PULocationID', 'DOLocationID']
-    
-    input_file = f'https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_{year:04d}-{month:02d}.parquet'
-    #output_file = f'output/yellow_tripdata_{year:04d}-{month:02d}.parquet'
-    output_file = f'taxi_type=yellow_year={year:04d}_month={month:02d}.parquet'
     
     with open('model.bin', 'rb') as f_in:
         dv, lr = pickle.load(f_in)
@@ -52,8 +73,6 @@ def main(year, month):
 
     df_result.to_parquet(output_file, engine='pyarrow', index=False)
 
-#if __name__ == "__main__":
-#    main()
 
 if __name__ == "__main__":
     year = int(sys.argv[1])
