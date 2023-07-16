@@ -14,7 +14,8 @@ def get_input_path(year, month):
 
 
 def get_output_path(year, month):
-    default_output_pattern = 's3://nyc-duration-prediction-lucapug/taxi_type=hw6/year={year:04d}/month={month:02d}/predictions.parquet'
+    #default_output_pattern = 's3://nyc-duration-prediction-lucapug/taxi_type=hw6/year={year:04d}/month={month:02d}/predictions.parquet'
+    default_output_pattern = f'taxi_type=yellow_year={year:04d}_month={month:02d}.parquet'
     output_pattern = os.getenv('OUTPUT_FILE_PATTERN', default_output_pattern)
     return output_pattern.format(year=year, month=month)
 
@@ -22,14 +23,14 @@ def read_data(filename):
     if os.getenv('S3_ENDPOINT_URL') is None:
         df = pd.read_parquet(filename)
     else:
-        endpoint_url=os.getenv('S3_ENDPOINT_URL')
+        endpoint_url = os.getenv('S3_ENDPOINT_URL')
         options = {
             'client_kwargs': {
                 'endpoint_url': endpoint_url
             }
         }
 
-        df = pd.read_parquet('s3://bucket/file.parquet', storage_options=options)        
+        df = pd.read_parquet(f's3://nyc-duration/in/{year:04d}-{month:02d}.parquet', storage_options=options)        
     
     return df
 
@@ -42,6 +43,25 @@ def prepare_data(df, categorical):
     df[categorical] = df[categorical].fillna(-1).astype('int').astype('str')
     
     return df    
+
+def save_data(df, filename):
+    if os.getenv('S3_ENDPOINT_URL') is None:
+        df.to_parquet(filename) 
+    else:
+        endpoint_url = os.getenv('S3_ENDPOINT_URL')
+        options = {
+            'client_kwargs': {
+                'endpoint_url': endpoint_url
+            }
+        }
+        
+        df.to_parquet(
+            filename, 
+            engine='pyarrow', 
+            index=False,
+            storage_options=options
+        )
+            
 
 def main(year, month):
     input_file = get_input_path(year, month)
@@ -64,18 +84,15 @@ def main(year, month):
 
 
     print('predicted mean duration:', y_pred.mean())
-
+    print('sum of predicted durations:', y_pred.sum())
 
     df_result = pd.DataFrame()
     df_result['ride_id'] = df['ride_id']
     df_result['predicted_duration'] = y_pred
 
-
-    df_result.to_parquet(output_file, engine='pyarrow', index=False)
-
+    save_data(df_result, output_file)
 
 if __name__ == "__main__":
     year = int(sys.argv[1])
     month = int(sys.argv[2])
-    # print(year)
     main(year=year, month=month)
