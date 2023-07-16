@@ -14,7 +14,7 @@ def get_input_path(year, month):
 
 
 def get_output_path(year, month):
-    default_output_pattern = 's3://nyc-duration-prediction-lucap/taxi_type=hw6/year={year:04d}/month={month:02d}/predictions.parquet'
+    default_output_pattern = 's3://nyc-duration-prediction-lucapug/taxi_type=hw6/year={year:04d}/month={month:02d}/predictions.parquet'
     output_pattern = os.getenv('OUTPUT_FILE_PATTERN', default_output_pattern)
     return output_pattern.format(year=year, month=month)
 
