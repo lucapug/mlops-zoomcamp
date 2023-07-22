@@ -17,6 +17,8 @@ pytest = "^7.4.0"
 requests = "^2.31.0"
 deepdiff = "^6.3.1"
 pylint = "^2.17.4"
+black = "^23.7.0"
+isort = "^5.12.0"
 
 [build-system]
 requires = ["poetry-core"]
@@ -27,5 +29,7 @@ disable = [
     "missing-module-docstring", 
     "missing-class-docstring", 
     "missing-function-docstring",
-    "missing-final-newline"
+    "missing-final-newline",
+    "invalid-name",
+    "too-few-public-methods"
 ]
