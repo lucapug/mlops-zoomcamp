@@ -21,3 +21,11 @@ pylint = "^2.17.4"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.pylint."messages control"]
+disable = [
+    "missing-module-docstring", 
+    "missing-class-docstring", 
+    "missing-function-docstring",
+    "missing-final-newline"
+]
