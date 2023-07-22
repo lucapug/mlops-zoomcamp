@@ -3,6 +3,7 @@ import json
 import boto3
 import base64
 
+
 import mlflow
 
 def get_model_location(run_id):
@@ -37,7 +38,7 @@ class ModelService():
     
     def prepare_features(self, ride):
         features = {}
-        features['PU_DO'] = '%s_%s' % (ride['PULocationID'], ride['DOLocationID'])
+        features['PU_DO'] = f"{ride['PULocationID']}_{ride['DOLocationID']}"
         features['trip_distance'] = ride['trip_distance']
         return features
 
