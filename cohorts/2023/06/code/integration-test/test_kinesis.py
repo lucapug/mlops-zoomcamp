@@ -1,10 +1,10 @@
 # pylint: disable=duplicate-code
 
 import os
-
-import boto3
 import json
 from pprint import pprint
+
+import boto3
 from deepdiff import DeepDiff
 
 kinesis_endpoint = os.getenv("KINESIS_ENDPOINT_URL", "http://localhost:4566")
