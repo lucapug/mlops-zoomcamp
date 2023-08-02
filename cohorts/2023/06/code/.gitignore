@@ -1,0 +1,3 @@
+__pycache__
+.venv
+integration-test/model/model.pkl
